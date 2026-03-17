@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <!--
  ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -639,15 +641,15 @@ window.submitCaptcha = function() {
 // ── LOGGING — POST to Worker /log ─────────────────────────────
 function logUsage(extra) {
     try {
-        fetch('https://lingering-mouse-8c7c.tsorotes-john.workers.dev/log', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                time: new Date().toISOString(),
-                extra: extra || ''
-            })
+        const params = new URLSearchParams({
+            time : new Date().toISOString(),
+            extra: extra || ''
         });
-    } catch(e) { /* silent — logging never breaks the app */ }
+        fetch('https://script.google.com/macros/s/AKfycbxSMgkEnUUVLXdaMYikjKuXxa-4eIxXlZV4HHonc1zf50suPnGNum6NSo8ysQzSjpTv_A/exec?' + params, {
+            method: 'GET',
+            mode  : 'no-cors'
+        });
+    } catch(e) { /* silent */ }
 }
 
 window.addEventListener('load', () => {
